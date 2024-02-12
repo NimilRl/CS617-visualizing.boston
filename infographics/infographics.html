@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Animation</title>
+<style>
+  /* Adjusted styles */
+body, html {
+height: 100%;
+margin: 0;
+/* overflow: hidden; Hide scrollbars */
+}
+
+.image-container {
+position: fixed; /* Changed from relative to fixed */
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+}
+
+.corner-image {
+position: absolute;
+width: 300px; /* Adjust based on your image size */
+height: auto;
+transition: all 1s ease; /* Smooth transition for the animation */
+}
+
+.top-left {
+top: 0;
+left: 0;
+}
+
+.top-right {
+top: 0;
+right: 0;
+}
+
+.bottom-left {
+bottom: 0;
+left: 0;
+}
+
+.bottom-right {
+bottom: 0;
+right: 0;
+}
+
+#animateButton {
+position: fixed; /* Make sure button is visible and not covered by full-screen images */
+z-index: 10;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+
+/* CSS */
+.button-6 {
+  align-items: center;
+  background-color: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: .25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.85);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  min-height: 3rem;
+  padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: auto;
+}
+
+.button-6:hover,
+.button-6:focus {
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.button-6:hover {
+  transform: translateY(-1px);
+}
+
+.button-6:active {
+  background-color: #F0F0F1;
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+  color: rgba(0, 0, 0, 0.65);
+  transform: translateY(0);
+}
+
+
+
+</style>
+</head>
+<body>
+  
+
+<div class="image-container">
+  <img src="1.jpg" id="image1" class="corner-image top-left">
+  <img src="2.jpg" id="image2" class="corner-image top-right">
+  <img src="3.jpg" id="image3" class="corner-image bottom-left">
+  <img src="4.jpg" id="image4" class="corner-image bottom-right">
+</div>
+
+<button class="button-6" id="animateButton" role="button">Lets see the magic 🪄🧙✨🎩</button>
+
+
+<script > // script.js
+    document.getElementById('animateButton').addEventListener('click', function() {
+      // Hide the button
+      this.style.display = 'none';
+    
+      // Animate images to come together in a vertical line
+      document.getElementById('image1').style.top = '0';
+      document.getElementById('image1').style.left = '50%';
+      document.getElementById('image1').style.transform = 'translateX(-50%)';
+    
+      document.getElementById('image2').style.top = '30%'; // Adjust based on image height
+      document.getElementById('image2').style.left = '50%';
+      document.getElementById('image2').style.transform = 'translateX(-50%)';
+    
+      document.getElementById('image3').style.top = '50%'; // Adjust based on image height
+      document.getElementById('image3').style.left = '50%';
+      document.getElementById('image3').style.transform = 'translateX(-50%)';
+    
+      document.getElementById('image4').style.top = '65%'; // Adjust based on image height
+      document.getElementById('image4').style.left = '50%';
+      document.getElementById('image4').style.transform = 'translateX(-50%)';
+    });
+    </script>
+</body>
+</html>
