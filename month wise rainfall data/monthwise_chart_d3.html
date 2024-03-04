@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rainfall Scatter Line Chart with D3.js</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <style>
+        .d3_dot {
+            fill: DodgerBlue;
+        }
+        .d3_line {
+
+            stroke: grey;
+            stroke-width: 3;
+        }
+        .d3_label {
+            font-size: 13px;
+            text-anchor: middle;
+        }
+        .d3_axis, .y-axis {
+            stroke: black;
+            stroke-width: 1;
+        }
+        .d3_grid-line {
+            stroke: lightgrey;
+            stroke-width: 0.5;
+            stroke-dasharray: 2;
+        }
+        .d3_axis-label {
+            font-size: 10px;
+            text-anchor: end;
+        }
+        .d3_chart-title, .d3_axis-name {
+            font-size: 16px;
+            font-weight: bold;
+            text-anchor: middle;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        const rainfallData = [
+            { month: 'Jan', value: 2.58 },
+            { month: 'Feb', value: 3.67 },
+            { month: 'Mar', value: 2.98 },
+            { month: 'Apr', value: 3.13 },
+            { month: 'May', value: 2.59 },
+            { month: 'Jun', value: 1.54 },
+            { month: 'Jul', value: 1.36 },
+            { month: 'Aug', value: 1.21 },
+            { month: 'Sep', value: 1.53 },
+            { month: 'Oct', value: 6.22 },
+            { month: 'Nov', value: 2.94 },
+            { month: 'Dec', value: 2.94 }
+        ];
+
+        const svg = d3.select('body').append('svg')
+            .attr('width', 650)
+            .attr('height', 600);
+
+        const xScale = d3.scalePoint()
+            .domain(rainfallData.map(d => d.month))
+            .range([50, 600]);
+
+        const yScale = d3.scaleLinear()
+            .domain([0, d3.max(rainfallData, d => d.value)])
+            .range([400, 50]);
+
+        // Create Y-axis
+        const yAxis = d3.axisLeft(yScale)
+            .ticks(5); // Adjust number of ticks as needed
+
+        // Append Y-axis to the SVG
+        svg.append('g')
+            .attr('class', 'y-axis')
+            .attr('transform', 'translate(50,0)') // Position Y-axis at x=50
+            .call(yAxis);
+
+        const line = d3.line()
+            .x(d => xScale(d.month))
+            .y(d => yScale(d.value));
+
+        svg.append('path')
+            .datum(rainfallData)
+            .attr('fill', 'none')
+            .attr('stroke', 'grey')
+            .attr('stroke-width', 3)
+            .attr('d', line);
+
+        svg.selectAll('.d3_dot')
+            .data(rainfallData)
+            .enter().append('circle')
+            .attr('class', 'd3_dot')
+            .attr('cx', d => xScale(d.month))
+            .attr('cy', d => yScale(d.value))
+            .attr('r', 5);
+
+        svg.selectAll('.d3_label')
+            .data(rainfallData)
+            .enter().append('text')
+            .attr('class', 'd3_label')
+            .attr('x', d => xScale(d.month))
+            .attr('y', 420)
+            .text(d => d.month);
+
+        svg.append('text')
+            .attr('class', 'd3_chart-title')
+            .attr('x', 325)
+            .attr('y', 40)
+            .text('Monthly Rainfall Overview');
+
+        svg.append('text')
+            .attr('class', 'd3_axis-name')
+            .attr('x', 325)
+            .attr('y', 450)
+            .text('Months');
+
+        svg.append('text')
+            .attr('class', 'd3_axis-name')
+            .attr('x', -290)
+            .attr('y', 20)
+            .attr('transform', 'rotate(-90)')
+            .text('Rainfall (inches)');
+
+        // Add X-axis line
+        svg.append('line')
+            .attr('x1', 50)
+            .attr('y1', 400)
+            .attr('x2', 600)
+            .attr('y2', 400)
+            .attr('class', 'd3_axis');
+
+        // Add Y-axis line (Already created with Y-axis)
+        // svg.append('line')
+        //     .attr('x1', 50)
+        //     .attr('y1', 50)
+        //     .attr('x2', 50)
+        //     .attr('y2', 400)
+        //     .attr('class', 'd3_axis');
+    </script>
+</body>
+</html>

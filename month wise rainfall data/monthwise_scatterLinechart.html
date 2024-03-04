@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rainfall Scatter Line Chart</title>
+    <style>
+         .dot {
+            fill: DodgerBlue;
+        }
+        .line {
+            stroke: grey;
+            stroke-width: 3;
+        }
+        .label {
+            font-size: 13px;
+            text-anchor: middle;
+        }
+        .axis {
+            stroke: black;
+            stroke-width: 1;
+        }
+        .grid-line {
+            stroke: lightgrey;
+            stroke-width: 0.5;
+            stroke-dasharray: 2;
+        }
+        .axis-label {
+            font-size: 10px;
+            text-anchor: end;
+        }
+    </style>
+</head>
+<body>
+    <svg width="650" height="600">
+        
+        <!-- lables for axis and title -->
+        <text x="250" y="40" class="chart-title">Monthly Rainfall Overview</text>
+        
+        <text x="300" y="520" class="axis-name">Months</text>
+        
+        <text x="-290" y="20" transform="rotate(-90)" class="axis-name">Rainfall (inches)</text>
+        <text x="200" y="550" class="chart-title">Dorchester - Adams Village (Year: 2016)</text>
+        
+        <!-- Define the line path for the scatter line -->
+        <path d="M 50,400 L 100,350 L 150,370 L 200,365 L 250,380 L 300,430 L 350,450 L 400,460 L 450,450 L 500,100 L 550,210.94 L 600,210.94" class="line"></path>
+
+        
+        <!-- Y-axis labels and grid lines -->
+        <!-- The following are example positions; you will need to calculate actual positions based on your scaling -->
+        <text x="45" y="400" class="axis-label">0"</text>
+        <line x1="50" y1="400" x2="550" y2="400" class="grid-line"></line>
+        
+        <text x="45" y="336" class="axis-label">1"</text>
+        <line x1="50" y1="336" x2="550" y2="336" class="grid-line"></line>
+        
+        <text x="45" y="272" class="axis-label">2"</text>
+        <line x1="50" y1="272" x2="550" y2="272" class="grid-line"></line>
+        
+        <text x="45" y="208" class="axis-label">3"</text>
+        <line x1="50" y1="208" x2="550" y2="208" class="grid-line"></line>
+        
+        <text x="45" y="144" class="axis-label">4"</text>
+        <line x1="50" y1="144" x2="550" y2="144" class="grid-line"></line>
+        
+        <text x="45" y="80" class="axis-label">5"</text>
+        <line x1="50" y1="80" x2="550" y2="80" class="grid-line"></line>
+        
+        
+        <!-- Add circles for the scatter plot points -->
+        <circle cx="50"  cy="400" r="5" class="dot"></circle> <!-- January -->
+        <circle cx="100" cy="350" r="5" class="dot"></circle> <!-- February -->
+        <circle cx="150" cy="370" r="5" class="dot"></circle> <!-- March -->
+        <circle cx="200" cy="365" r="5" class="dot"></circle> <!-- April -->
+        <circle cx="250" cy="380" r="5" class="dot"></circle> <!-- May -->
+        <circle cx="300" cy="430" r="5" class="dot"></circle> <!-- June -->
+        <circle cx="350" cy="450" r="5" class="dot"></circle> <!-- July -->
+        <circle cx="400" cy="460" r="5" class="dot"></circle> <!-- August -->
+        <circle cx="450" cy="450" r="5" class="dot"></circle> <!-- September -->
+        <circle cx="500" cy="100" r="5" class="dot"></circle> <!-- October -->
+         <circle cx="550" cy="210.94" r="5" class="dot"></circle> <!-- November -->
+        <circle cx="600" cy="210.94" r="5" class="dot"></circle> <!-- December -->
+
+        <!-- Labels for months -->
+        <text x="50"  y="490" class="label">Jan</text>
+        <text x="100" y="490" class="label">Feb</text>
+        <text x="150" y="490" class="label">Mar</text>
+        <text x="200" y="490" class="label">Apr</text>
+        <text x="250" y="490" class="label">May</text>
+        <text x="300" y="490" class="label">Jun</text>
+        <text x="350" y="490" class="label">Jul</text>
+        <text x="400" y="490" class="label">Aug</text>
+        <text x="450" y="490" class="label">Sep</text>
+        <text x="500" y="490" class="label">Oct</text>
+        <text x="550" y="490" class="label">Nov</text>
+        <text x="600" y="490" class="label">Dec</text>
+        
+        <!-- Add axis lines -->
+        <line x1="30" y1="470" x2="600" y2="470" class="axis"></line> <!-- Extended x-axis line -->
+        <line x1="50" y1="476" x2="50"  y2="50"  class="axis"></line> <!-- Y Axis -->
+    </svg>
+</body>
+</html>
+
+<!--// Given values-->
+<!--var rainfallInches = 2.94;-->
+<!--var pixelsPerInch = 64.31;-->
+<!--var svgCanvasHeight = 400;-->
+
+<!--// Calculate the pixel value for the rainfall inches-->
+<!--var rainfallPixels = rainfallInches * pixelsPerInch;-->
+
+<!--// Calculate the cy position for the SVG element-->
+<!--var cyPosition = svgCanvasHeight - rainfallPixels;-->
+
+<!--console.log("The cy position for 2.94 inches of rainfall is: " + cyPosition.toFixed(2) + " pixels.");-->
+
+
+
